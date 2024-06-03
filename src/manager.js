@@ -28,44 +28,18 @@ class Stock {
     return null;
   }
 
-  init() {
-    this.list_product.push(
-      new Product(1, "Germinal 1", "description germinal 1", 10)
-    );
-    this.list_product.push(
-      new Product(2, "Germinal 2", "description germinal 2", 20)
-    );
-    this.list_product.push(
-      new Product(3, "Germinal 3", "description germinal 3", 30)
-    );
-    this.list_product.push(
-      new Product(4, "Germinal 4", "description germinal 4", 40)
-    );
-    this.list_product.push(
-      new Product(5, "Germinal 5", "description germinal 5", 50)
-    );
-    this.list_product.push(
-      new Product(6, "Germinal 6", "description germinal 6", 60)
-    );
-    this.list_product.push(
-      new Product(7, "Germinal 7", "description germinal 7", 70)
-    );
-    this.list_product.push(
-      new Product(8, "Germinal 8", "description germinal 8", 80)
-    );
-    this.list_product.push(
-      new Product(9, "Germinal 9", "description germinal 9", 90)
-    );
-    this.list_product.push(
-      new Product(10, "Germinal 10", "description germinal 10", 100)
-    );
-    this.list_product.push(
-      new Product(11, "Germinal 11", "description germinal 11", 110)
-    );
+  async init (){
+
+    try {
+      const response = await fetch('http://localhost:3000/products');
+      const data = await response.json();
+      this.list_product = data.map(item => new Product(item.id, item.name, item.description, item.price));
+    } catch (error) {
+      console.error('Error product:', error);
+    }
   }
 }
 
-// eslint-disable-next-line no-unused-vars
 class Cart {
   constructor() {
     this.list_cart = {};
