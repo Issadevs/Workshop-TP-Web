@@ -71,8 +71,9 @@ export default {
       nbr_product: 0,
     };
   },
-  created() {
+  async created() {
     this.stock = new Stock();
+    await this.stock.init();
     this.cart = new Cart();
     this.list_products = this.stock.get_list_product();
   },
