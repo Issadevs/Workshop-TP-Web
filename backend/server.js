@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Configde la connexion MySQL
+// Config de la connexion MySQL
 const dbConfig = {
     host: 'localhost',
     user: 'root',
@@ -21,7 +21,7 @@ const connection = mysql.createConnection(dbConfig);
 connection.connect((error) => {
     if (error) {
         console.error('Error connecting to MySQL:', error);
-        // En cas d'erreur d'authentification, suivez les étapes mentionnées pour mettre à jour l'authentification ou le client MySQL
+        // En cas d'erreur d'authentification, mettre à jour authentification ou client MySQL
         return;
     }
     console.log('Connected to MySQL');
